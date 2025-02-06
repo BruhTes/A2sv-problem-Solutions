@@ -1,0 +1,26 @@
+# Problem: Count Equal and Divisible Pairs in an Array - https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/
+
+class Solution:
+    def countPairs(self, nums: List[int], k: int) -> int:
+        index_map = defaultdict(list)
+
+        count = 0
+
+        for i, num in enumerate(nums):
+            if num in index_map:
+                for j in index_map[num]:
+                    if (i * j) % k == 0:
+                        count += 1
+
+            index_map[num].append(i)
+
+        return count
+
+        # count = 0
+
+        # for i in range(len(nums) - 1):
+        #     for j in range(i + 1, len(nums)):
+        #         if nums[i] == nums[j] and (i * j) % k:
+        #             count += 1
+        
+        # return count
